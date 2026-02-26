@@ -5,12 +5,20 @@ const log = prettyLog.default || prettyLog;
 
 const server = http.createServer((req, res) => {
 
+    const message = `Request: ${req.method} ${req.url}`;
+
+    // Print prettige log naar terminal
     if (typeof log === "function") {
-        log({
-            level: "info",
-            message: `Request: ${req.method} ${req.url}`,
-            timestamp: new Date().toISOString()
-        });
+        console.log(
+            log({
+                level: "info",
+                message: message,
+                timestamp: new Date().toISOString()
+            })
+        );
+    } else {
+        // fallback
+        console.log(message);
     }
 
     res.writeHead(200, { 'Content-Type': 'text/plain' });
@@ -20,14 +28,17 @@ const server = http.createServer((req, res) => {
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
+    const startMessage = `Server gestart op port ${PORT}`;
 
     if (typeof log === "function") {
-        log({
-            level: "info",
-            message: `Server gestart op port ${PORT}`,
-            timestamp: new Date().toISOString()
-        });
+        console.log(
+            log({
+                level: "success",
+                message: startMessage,
+                timestamp: new Date().toISOString()
+            })
+        );
+    } else {
+        console.log(startMessage);
     }
-
-    console.log(`Server draait op port ${PORT}`);
 });
