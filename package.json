@@ -11,6 +11,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
     "mongodb": "^7.1.0",
     "pretty-log": "^0.1.0"
   }
